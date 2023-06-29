@@ -7,24 +7,40 @@ public class Main {
 
     public static void main(String[] args){
     Random random = new Random();
-
     Scanner scanner = new Scanner(System.in);
-    int x = random.nextInt(11);
-    int z = 0;
-        while (true) {
-            System.out.println("Guess a number! ");
-            int y = scanner.nextInt();
 
-           if (y < x) {
-               System.out.println("too small");
-               z++;
-           } else if (y > x) {
-               System.out.println("too big");
-               z++;
-           } else if (y == x) {
+    int randomNum = random.nextInt(11);
+    int numOfGuess = 0;
+    int previousGuess = 0;
+    int guess = 0;
+
+        while (randomNum != guess) {
+            System.out.println("Guess a number! ");
+            guess = scanner.nextInt();
+
+           if (guess < randomNum) {
+               System.out.println("too small!");
+               if (previousGuess == guess) {
+                   System.out.println("and you just guessed that, try a different number!");
+                   numOfGuess += 0;
+               } else numOfGuess ++;
+               previousGuess = guess;
+           }
+
+            else if (guess > randomNum) {
+            System.out.println("too big!");
+              if (previousGuess == guess) {
+                  System.out.println("and you just guessed that, try a different number!");
+                numOfGuess += 0;
+            } else numOfGuess ++;
+              previousGuess = guess;
+
+
+           }
+            else if (guess == randomNum) {
                System.out.println("correct guess");
-               z++;
-               System.out.println("You guess " + z + " times!");
+               numOfGuess++;
+               System.out.println("You guess " + numOfGuess + " times!");
 
                break;
            }
